@@ -1,0 +1,16 @@
+D:\ProjetosRV\BaltaIO\MVC_Arquitetura\MVC_Arquitetura\MVC_Arquitetura.Repository\obj\Debug\MVC_Arquitetura.Repository.csprojAssemblyReference.cache
+D:\ProjetosRV\BaltaIO\MVC_Arquitetura\MVC_Arquitetura\MVC_Arquitetura.Repository\obj\Debug\MVC_Arquitetura.Repository.csproj.CoreCompileInputs.cache
+D:\ProjetosRV\BaltaIO\MVC_Arquitetura\MVC_Arquitetura\MVC_Arquitetura.Repository\bin\Debug\MVC_Arquitetura.Repository.dll.config
+D:\ProjetosRV\BaltaIO\MVC_Arquitetura\MVC_Arquitetura\MVC_Arquitetura.Repository\bin\Debug\MVC_Arquitetura.Repository.dll
+D:\ProjetosRV\BaltaIO\MVC_Arquitetura\MVC_Arquitetura\MVC_Arquitetura.Repository\bin\Debug\MVC_Arquitetura.Repository.pdb
+D:\ProjetosRV\BaltaIO\MVC_Arquitetura\MVC_Arquitetura\MVC_Arquitetura.Repository\bin\Debug\EntityFramework.dll
+D:\ProjetosRV\BaltaIO\MVC_Arquitetura\MVC_Arquitetura\MVC_Arquitetura.Repository\bin\Debug\EntityFramework.SqlServer.dll
+D:\ProjetosRV\BaltaIO\MVC_Arquitetura\MVC_Arquitetura\MVC_Arquitetura.Repository\bin\Debug\MVC_Arquitetura.Domain.dll
+D:\ProjetosRV\BaltaIO\MVC_Arquitetura\MVC_Arquitetura\MVC_Arquitetura.Repository\bin\Debug\MVC_Arquitetura.Domain.pdb
+D:\ProjetosRV\BaltaIO\MVC_Arquitetura\MVC_Arquitetura\MVC_Arquitetura.Repository\bin\Debug\EntityFramework.xml
+D:\ProjetosRV\BaltaIO\MVC_Arquitetura\MVC_Arquitetura\MVC_Arquitetura.Repository\bin\Debug\EntityFramework.SqlServer.xml
+D:\ProjetosRV\BaltaIO\MVC_Arquitetura\MVC_Arquitetura\MVC_Arquitetura.Repository\obj\Debug\MVC_Arquitetura.Repository.csproj.CopyComplete
+D:\ProjetosRV\BaltaIO\MVC_Arquitetura\MVC_Arquitetura\MVC_Arquitetura.Repository\obj\Debug\MVC_Arquitetura.Repository.dll
+D:\ProjetosRV\BaltaIO\MVC_Arquitetura\MVC_Arquitetura\MVC_Arquitetura.Repository\obj\Debug\MVC_Arquitetura.Repository.pdb
+D:\ProjetosRV\BaltaIO\MVC_Arquitetura\MVC_Arquitetura\MVC_Arquitetura.Repository\obj\Debug\MVC_Arquitetura.Repository.Migrations.v1.resources
+D:\ProjetosRV\BaltaIO\MVC_Arquitetura\MVC_Arquitetura\MVC_Arquitetura.Repository\obj\Debug\MVC_Arquitetura.Repository.csproj.GenerateResource.cache
