@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace MVC_Arquitetura.Controllers
 {
+    [RoutePrefix("livros")]
     public class LivroController : Controller
     {
         IBookRepository _repository { get; set; }
@@ -17,7 +18,6 @@ namespace MVC_Arquitetura.Controllers
         {
             _repository = repository;
         }
-
 
         [Route("listar")]
         public ActionResult Index()
