@@ -15,7 +15,7 @@ namespace MVC_Arquitetura.Repository.Context
         public DbSet<Livro> Livros { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
 
-        public BookStoreDataContext() : base("BancoBookStore")
+        public BookStoreDataContext() : base("BancoConnection")
         {
 
         }
