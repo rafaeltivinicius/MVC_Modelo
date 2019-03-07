@@ -1,7 +1,9 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-}
+﻿@model IEnumerable<MVC_Arquitetura.Domain.Livro>
 
-<h2>Index</h2>
+<p>
+    <br /><br />
+    @Html.ActionLink("Criar Novo Livro", "Create")
+    <br /><br />
+</p>
 
+@Html.Partial("Partials/ListarLivro", Model)

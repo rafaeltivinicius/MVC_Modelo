@@ -276,7 +276,10 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Livro\Create.cshtml" />
+    <Content Include="Views\Livro\Partials\CriarEditaLivroPartial.cshtml" />
+    <Content Include="Views\Livro\Edit.cshtml" />
     <Content Include="Views\Livro\Index.cshtml" />
+    <Content Include="Views\Livro\Partials\ListarLivro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
