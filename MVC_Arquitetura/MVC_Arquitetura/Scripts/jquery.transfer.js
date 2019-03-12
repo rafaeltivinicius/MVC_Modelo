@@ -42,12 +42,12 @@ var Transfer = (function ($) {
         // 数据项总个数
         var total_num = settings.data.length;
         // 总个数显示文本
-        var total_num_str = settings.data.length + " Items";
+        var total_num_str = settings.data.length + " Itens";
 
         // 分组总个数
         var total_group_num = getGroupNum(groupData, groupListName);
         // 分组总个数显示文本
-        var total_group_num_str = total_group_num + " Items";
+        var total_group_num_str = total_group_num + " Itens";
 
         // 新的总个数
         var new_total_num = 0;
@@ -151,7 +151,7 @@ var Transfer = (function ($) {
                 $(addSelected).removeClass("btn-arrow-active");
                 $(transferId).find(transferDoubleSelectedListUl).empty();
                 // 清空右侧数量
-                $(transferId).find(selectedTotalNum).text("共0 Items");
+                $(transferId).find(selectedTotalNum).text("0 Itens");
                 // 未选中项
                 if ($(transferId).find(tabContentFirst).css("display") != "none") {
                     $(transferId).find(transferDoubleGroupListLiUlLi).each(function () {
@@ -164,7 +164,7 @@ var Transfer = (function ($) {
                     $(transferId).find(selectAllId).prop("disabled", "");
 
                     $(transferId).find(groupTotalNum).empty();
-                    $(transferId).find(groupTotalNum).append($(transferId).find(transferDoubleGroupListLiUlLi).length + " Items");
+                    $(transferId).find(groupTotalNum).append($(transferId).find(transferDoubleGroupListLiUlLi).length + " Itens");
                 } else {
                     // 分组
 
@@ -181,7 +181,7 @@ var Transfer = (function ($) {
                         $(this).prop("checked", false);
                     });
                     $(transferId).find(totalNum).empty();
-                    $(transferId).find(totalNum).append($(transferId).find(transferDoubleListLi).length + " Items");
+                    $(transferId).find(totalNum).append($(transferId).find(transferDoubleListLi).length + " Itens");
                 }
                 // 数据变化触发回调
                 callable.call(this, getSelected(), getSelectedName());
@@ -370,11 +370,11 @@ var Transfer = (function ($) {
                 new_group_total_num = total_group_num - selectedItemNum;
                 // 计算右侧总数
                 selected_total_num = selectedItemNum;
-                var new_total_num_str = new_group_total_num + " Items";
+                var new_total_num_str = new_group_total_num + " Itens";
                 // 左侧数量
                 $(transferId).find(groupTotalNum).append(new_total_num_str);
                 // 右侧数量
-                $(transferId).find(selectedTotalNum).text(selected_total_num + " Items");
+                $(transferId).find(selectedTotalNum).text(selected_total_num + " Itens");
                 if (new_group_total_num == 0) {
                     $(groupsSelectAllId).prop("checked", true);
                     $(groupsSelectAllId).prop("disabled", "disabled");
@@ -406,7 +406,7 @@ var Transfer = (function ($) {
                 // 左侧数量
                 $(transferId).find(totalNum).append(new_total_num_str);
                 // 右侧数量
-                $(transferId).find(selectedTotalNum).text(selected_total_num + " Items");
+                $(transferId).find(selectedTotalNum).text(selected_total_num + " Itens");
                 if (new_total_num == 0) {
                     $(selectAllId).prop("checked", true);
                     $(selectAllId).prop("disabled", "disabled");
@@ -447,11 +447,11 @@ var Transfer = (function ($) {
                 new_group_total_num = new_group_total_num + deleteItemNum;
                 // 计算右侧总数
                 selected_total_num -= deleteItemNum;
-                var new_total_num_str = new_group_total_num + " Items";
+                var new_total_num_str = new_group_total_num + " Itens";
                 // 左侧总数
                 $(transferId).find(groupTotalNum).append(new_total_num_str);
                 // 右侧总数
-                $(transferId).find(selectedTotalNum).text(selected_total_num + " Items");
+                $(transferId).find(selectedTotalNum).text(selected_total_num + " Itens");
                 if ($(groupsSelectAllId).is(':checked')) {
                     $(groupsSelectAllId).prop("checked", false);
                     $(groupsSelectAllId).removeAttr("disabled");
@@ -476,11 +476,11 @@ var Transfer = (function ($) {
                 new_total_num = new_total_num + deleteItemNum;
                 // 计算右侧总数
                 selected_total_num -= deleteItemNum;
-                var new_total_num_str = new_total_num + " Items";
+                var new_total_num_str = new_total_num + " Itens";
                 // 左侧总数
                 $(transferId).find(totalNum).append(new_total_num_str);
                 // 右侧总数
-                $(transferId).find(selectedTotalNum).text(selected_total_num + " Items");
+                $(transferId).find(selectedTotalNum).text(selected_total_num + " Itens");
                 if ($(selectAllId).is(':checked')) {
                     $(selectAllId).prop("checked", false);
                     $(selectAllId).removeAttr("disabled");
@@ -700,7 +700,7 @@ var Transfer = (function ($) {
             + '<div class="transfer-double-content-left">'
             + '<div class="transfer-double-content-tabs">'
             + '<div id="lbGrupo" class="tab-item-name tab-item-name-' + currentTimeStr + ' ">Groups</div>'
-            + '<div id="lbItem" class="tab-item-name tab-item-name-' + currentTimeStr + ' tab-active">Items</div>'
+            + '<div id="lbItem" class="tab-item-name tab-item-name-' + currentTimeStr + ' tab-active"><h4><b>Itens</b></h4></div>'
             + '</div>'
 
             + '<div class="transfer-double-list transfer-double-list-' + currentTimeStr + ' tab-content-first-' + currentTimeStr + '">'
@@ -748,12 +748,12 @@ var Transfer = (function ($) {
             + '</div>'
             + '<div class="transfer-double-content-right">'
             + '<div class="transfer-double-content-param">'
-            + '<div class="param-item">Selected</div>'
+            + '<div class="param-item"><h4><b>Associados</h4></b></div>'
             + '</div>'
             + '<div class="transfer-double-selected-list">'
             + '<div class="transfer-double-selected-list-header">'
             + '<div class="transfer-double-selected-list-search">'
-            + '<input class="transfer-double-selected-list-search-input" type="text" id="selectedListSearch_' + currentTimeStr + '" placeholder="Search" value="" />'
+            + '<input class="transfer-double-selected-list-search-input" type="text" id="selectedListSearch_' + currentTimeStr + '" placeholder="Buscar" value="" />'
             + '</div>'
             + '</div>'
             + '<div class="transfer-double-selected-list-content">'

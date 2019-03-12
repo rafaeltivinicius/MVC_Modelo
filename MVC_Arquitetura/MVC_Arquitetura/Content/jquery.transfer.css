@@ -1,22 +1,3 @@
-* {
-    padding: 0;
-    margin: 0;
-}
-
-body {
-    font-family: "Microsoft YaHei", "SimSun";
-    border: none;
-    font-size: 14px;
-    color: #333;
-    background: #f5f6fa;
-    padding: 15px 0;
-    line-height: 22px;
-}
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
 
 .checkbox-group .checkbox-normal {
     display: none;
@@ -168,37 +149,14 @@ body {
     margin-top: 7px;
 }
 
-.transfer-double {
-    width: 638px;
-    height: 390px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    position: absolute;
-    left: 30%;
-    z-index: 1000;
-    border-radius: 2px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
-    /* for firefox */
-    -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
-    /* for safari or chrome */
-    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
-}
-
-.transfer-double-header {
-    padding: 10px
-}
-
-.transfer-double-content {
-    padding: 10px 14px 30px 30px;
-}
-
 .transfer-double-content-left {
     display: inline-block;
     width: 258px;
     height: 320px;
-    border: 1px solid #eee;
+    border: 1px solid #000;
     border-radius: 2px;
     float: left;
+    background-color: #f3f3f3;
 }
 
 .transfer-double-content-middle {
@@ -213,8 +171,9 @@ body {
     display: inline-block;
     width: 258px;
     height: 320px;
-    border: 1px solid #eee;
+    border: 1px solid #000;
     border-radius: 2px;
+    background-color: #f3f3f3;
 }
 
 .transfer-double-content-tabs {

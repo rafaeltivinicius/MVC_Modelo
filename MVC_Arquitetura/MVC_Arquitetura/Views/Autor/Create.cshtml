@@ -1,75 +1,42 @@
-﻿@{
-    ViewBag.Title = "Criando Livro";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@model IEnumerable<MVC_Arquitetura.Domain.Livro>
 
-<link href="~/icon_font/css/icon_font.css" rel="stylesheet" />
-<link href="~/Content/jquery.transfer.css" rel="stylesheet" />
-<link href="~/Content/util.css" rel="stylesheet" />
+    @{
+        ViewBag.Title = "Criando Autor";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 
-<div class="container">
-    <form style="margin-top:20%">
+    <link href="~/icon_font/css/icon_font.css" rel="stylesheet" />
+    <link href="~/Content/jquery.transfer.css" rel="stylesheet" />
+    <link href="~/Content/util.css" rel="stylesheet" />
+
+    <form style="margin-top:5%">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Nome</label>
+            <input type="text" class="form-control" id="txtNome" aria-describedby="emailHelp" placeholder="Nome">
+        </div>
+        <br />
         <div class="transfer"></div>
     </form>
-</div>
 
-@section scripts {
 
-    <script src="~/Scripts/jquery.transfer.js"></script>
-
-    <script type="text/javascript">
-        var itens = [
-            {
-                "language": "jQuery",
-                "value": 122
-            },
-            {
-                "language": "AngularJS",
-                "value": 132
-            },
-            {
-                "language": "ReactJS",
-                "value": 422
-            },
-            {
-                "language": "VueJS",
-                "value": 232
-            },
-            {
-                "language": "JavaScript",
-                "value": 765
-            },
-            {
-                "language": "Java",
-                "value": 876
-            },
-            {
-                "language": "Python",
-                "value": 453
-            },
-            {
-                "language": "TypeScript",
-                "value": 125
-            }
-        ];
-        
-
+    @section scripts {
+        <script src="~/Scripts/jquery.transfer.js"></script>
+        <script type="text/javascript">
+        var itens = @Html.Raw(Json.Encode(Model));
         var settings = {
             "inputId": "languageInput",
             "data": itens,
-            "itemName": "language",
+            "itemName": "Nome",
             "container": "transfer",
-            "valueName": "value",
+            "valueName": "Id",
             "callable": function (data, names) {
                 console.log("Selected ID：" + data)
                 $("#selectedItemSpan").text(names)
             }
         };
-
         Transfer.transfer(settings);
-    </script>
-
-}
+        </script>
+    }
 
 
 

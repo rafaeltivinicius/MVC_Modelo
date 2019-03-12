@@ -11,13 +11,16 @@ namespace MVC_Arquitetura.Controllers
     [RoutePrefix("autores")]
     public class AutorController : Controller
     {
-        private IAuthorRepository _repository;
+        private IAuthorRepository _repositoryAutor;
+        private IBookRepository _repositoryLivro;
 
-        public AutorController(IAuthorRepository repository)
+        public AutorController(IAuthorRepository repositoryA, IBookRepository repositoryL)
         {
-            _repository = repository;
+            _repositoryAutor = repositoryA;
+            _repositoryLivro = repositoryL;
         }
 
+        [HttpGet]
         [Route("listar")]
         public ActionResult Index()
         {
@@ -27,13 +30,21 @@ namespace MVC_Arquitetura.Controllers
         [HttpGet]
         public JsonResult CarregarTabela()
         {
-            return Json(_repository.get(), JsonRequestBehavior.AllowGet);
+            return Json(_repositoryAutor.get(), JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        [Route("criar")]
+        public ActionResult Create()
+        {
+            return View(_repositoryLivro.get());
+        }
+
+        [HttpPost]
         [Route("criar")]
         public ActionResult Create(Autor author)
         {
-            if (_repository.Create(author))
+            if (_repositoryAutor.Create(author))
                 return View("Index");
 
             return View(author);
@@ -42,14 +53,14 @@ namespace MVC_Arquitetura.Controllers
         [Route("editar/{id:int:min(1)}")]
         public ActionResult Edit(int id)
         {
-            var author = _repository.GetById(id);
+            var author = _repositoryAutor.GetById(id);
             return View(author);
         }
 
         [HttpPost]
         public ActionResult Edit(Autor author)
         {
-            if (_repository.Update(author))
+            if (_repositoryAutor.Update(author))
                 return View("Index");
 
             return View(author);
@@ -58,7 +69,7 @@ namespace MVC_Arquitetura.Controllers
         [Route("excluir/{id:int}")]
         public ActionResult Delete(int id)
         {
-            var author = _repository.GetById(id);
+            var author = _repositoryAutor.GetById(id);
             return View();
         }
 
@@ -67,7 +78,7 @@ namespace MVC_Arquitetura.Controllers
         [ActionName("Delete")]
         public ActionResult DeleteConfirm(int id)
         {
-            _repository.Delete(id);
+            _repositoryAutor.Delete(id);
             return RedirectToAction("Index");
         }
 
