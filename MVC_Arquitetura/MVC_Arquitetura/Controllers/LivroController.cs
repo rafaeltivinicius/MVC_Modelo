@@ -19,11 +19,13 @@ namespace MVC_Arquitetura.Controllers
             _repository = repository;
         }
 
+
         [Route("listar")]
         public ActionResult Index()
         {
             return View(_repository.get());
         }
+
 
         [Route("criar")]
         public ActionResult Create()

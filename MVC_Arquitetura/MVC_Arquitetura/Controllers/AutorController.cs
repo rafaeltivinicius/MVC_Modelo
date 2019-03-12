@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace MVC_Arquitetura.Controllers
 {
+    [RoutePrefix("autores")]
     public class AutorController : Controller
     {
         private IAuthorRepository _repository;
@@ -20,7 +21,13 @@ namespace MVC_Arquitetura.Controllers
         [Route("listar")]
         public ActionResult Index()
         {
-            return View(_repository.get());
+            return View();
+        }
+
+        [HttpGet]
+        public JsonResult CarregarTabela()
+        {
+            return Json(_repository.get(), JsonRequestBehavior.AllowGet);
         }
 
         [Route("criar")]

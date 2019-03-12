@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Criando Livro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/icon_font/css/icon_font.css" rel="stylesheet" />
+<link href="~/Content/jquery.transfer.css" rel="stylesheet" />
+<link href="~/Content/util.css" rel="stylesheet" />
+
+<div class="container">
+    <form style="margin-top:20%">
+        <div class="transfer"></div>
+    </form>
+</div>
+
+@section scripts {
+
+    <script src="~/Scripts/jquery.transfer.js"></script>
+
+    <script type="text/javascript">
+        var itens = [
+            {
+                "language": "jQuery",
+                "value": 122
+            },
+            {
+                "language": "AngularJS",
+                "value": 132
+            },
+            {
+                "language": "ReactJS",
+                "value": 422
+            },
+            {
+                "language": "VueJS",
+                "value": 232
+            },
+            {
+                "language": "JavaScript",
+                "value": 765
+            },
+            {
+                "language": "Java",
+                "value": 876
+            },
+            {
+                "language": "Python",
+                "value": 453
+            },
+            {
+                "language": "TypeScript",
+                "value": 125
+            }
+        ];
+        
+
+        var settings = {
+            "inputId": "languageInput",
+            "data": itens,
+            "itemName": "language",
+            "container": "transfer",
+            "valueName": "value",
+            "callable": function (data, names) {
+                console.log("Selected ID：" + data)
+                $("#selectedItemSpan").text(names)
+            }
+        };
+
+        Transfer.transfer(settings);
+    </script>
+
+}
+
+
+
+
