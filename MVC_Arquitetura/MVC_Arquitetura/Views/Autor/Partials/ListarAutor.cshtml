@@ -1,0 +1,19 @@
+﻿<form>
+    <div class="container">
+        <br />
+        <a href="@Url.Action("Create", "Autor")" class="btn btn-primary">Novo Usuario</a>
+
+        <table id="tableAutor" class="table table-striped" cellspacing="1"
+               data-toggle="table" data-search="true" data-url='@Url.Action("CarregarTabela","Autor")' data-pagination="true"
+               data-total-field="count" data-height="50%" data-locale="pt-BR" data-show-export="true">
+            <thead>
+                <tr>
+                    <th data-field="Id" data-sortable="true" data-halign="center">ID</th>
+                    <th data-field="Nome" data-sortable="true" data-halign="center" style="margin-left:10px;margin-right:10px">NOME</th>
+                    <th data-field="Id" data-formatter="priceFormatter" data-halign="center" data-width="12%">OPÇÕES</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</form>
+

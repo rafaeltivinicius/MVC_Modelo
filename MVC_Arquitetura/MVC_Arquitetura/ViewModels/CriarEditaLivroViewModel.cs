@@ -16,9 +16,9 @@ namespace MVC_Arquitetura.ViewModels
         public string Nome { get; set; }
         [Required(ErrorMessage = "ISBN inválido")]
         public string ISBN { get; set; }
-        [Required(ErrorMessage = "Data inválida")]
         [Display(Name = "Data de lançamento")]
-        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date, ErrorMessage = "Data no formato inválido")]
         public DateTime Datalancamento { get; set; }
         [Required(ErrorMessage = "Selecione uma categoria")]
         public int CategoriaId { get; set; }
