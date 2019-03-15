@@ -43,7 +43,7 @@ namespace MVC_Arquitetura.Repository
 
         public List<Categoria> get()
         {
-            return _db.Categorias.ToList();
+            return _db.Categorias.AsNoTracking().ToList();
         }
 
         public Categoria GetById(int id)
@@ -53,7 +53,7 @@ namespace MVC_Arquitetura.Repository
 
         public List<Categoria> GetByName(string name)
         {
-            return _db.Categorias.Where(x => x.Nome.Trim().Contains(name.Trim())).ToList();
+            return _db.Categorias.AsNoTracking().Where(x => x.Nome.Trim().Contains(name.Trim())).ToList();
         }
 
         public bool Update(Categoria categoria)

@@ -23,13 +23,17 @@ namespace MVC_Arquitetura.Repository
         {
             try
             {
+                _db.Entry<Autor>(autor).State = EntityState.Detached;
+                _db.Aturores.Attach(autor);
+
                 _db.Aturores.Add(autor);
                 _db.SaveChanges();
 
                 return true;
             }
-            catch
+            catch(Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
         }
@@ -43,7 +47,7 @@ namespace MVC_Arquitetura.Repository
 
         public List<Autor> get()
         {
-            return _db.Aturores.ToList();
+            return _db.Aturores.AsNoTracking().ToList();
         }
 
         public Autor GetById(int id)
@@ -53,7 +57,7 @@ namespace MVC_Arquitetura.Repository
 
         public List<Autor> GetByName(string name)
         {
-            return _db.Aturores.Where(x => x.Nome.Trim().Contains(name.Trim())).ToList();
+            return _db.Aturores.AsNoTracking().Where(x => x.Nome.Trim().Contains(name.Trim())).ToList();
         }
 
         public bool Update(Autor autor)

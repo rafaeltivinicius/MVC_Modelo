@@ -43,11 +43,11 @@ namespace MVC_Arquitetura.Repository
 
         public List<Livro> get()
         {
-            return _db.Livros.ToList();
+            return _db.Livros.AsNoTracking().ToList();
         }
         public List<Categoria> GetCategory()
         {
-            return _db.Categorias.ToList();
+            return _db.Categorias.AsNoTracking().ToList();
         }
 
         public Livro GetById(int id)
@@ -57,7 +57,7 @@ namespace MVC_Arquitetura.Repository
 
         public List<Livro> GetByName(string name)
         {
-            return _db.Livros.Where(x => x.Nome.Trim().Contains(name.Trim())).ToList();
+            return _db.Livros.AsNoTracking().Where(x => x.Nome.Trim().Contains(name.Trim())).ToList();
         }
 
         public bool Update(Livro livro)

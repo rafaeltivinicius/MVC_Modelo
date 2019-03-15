@@ -85,7 +85,7 @@ namespace MVC_Arquitetura.Controllers
             {
                 Nome = livro.Nome,
                 ISBN = livro.ISBN,
-                Datalancamento = livro.Datalancamento,
+                Datalancamento  = livro.Datalancamento,
                 CategoriaId = livro.CategoriaId,
                 CategoriaOptions = new SelectList(categorias, "Id", "Nome")
             };

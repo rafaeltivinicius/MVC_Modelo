@@ -15,7 +15,7 @@ namespace MVC_Arquitetura.Repository.Mapping
             ToTable("Livro");
             HasKey(x => x.Id);
             Property(x => x.Datalancamento).IsRequired();
-            Property(x => x.Nome).HasMaxLength(30).IsRequired();
+            Property(x => x.Nome).HasMaxLength(30).IsRequired().IsUnicode(true);
         }
     }
 }

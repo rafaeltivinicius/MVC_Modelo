@@ -17,14 +17,17 @@
     <br />
     <div class="transfer"></div>
     <br />
-    <button type="submit" class="btn btn-primary" style="width:7%">Criar</button>
+    <button type="submit" onclick="SubmitDados()" class="btn btn-primary" style="width:7%">Criar</button>
 </form>
 
 
 @section scripts {
     <script src="~/Scripts/jquery.transfer.js"></script>
     <script type="text/javascript">
+
+        var livros = [];
         var itens = @Html.Raw(Json.Encode(Model));
+
         var settings = {
             "inputId": "languageInput",
             "data": itens,
@@ -32,10 +35,43 @@
             "container": "transfer",
             "valueName": "Id",
             "callable": function (data, names) {
-                console.log("Selected ID：" + data)
+                for (i = 0; i < data.length; i++) {
+                    var item = {};
+                    item['Nome'] = names[i];
+                    item['Id'] = data[i];
+                    if (livros.map(a => a.Id).indexOf(data[i]) < 0) {
+                        livros.push(item);
+                    }
+                }
             }
         };
+
         Transfer.transfer(settings);
+
+        function SubmitDados() {
+            var nome = $("#txtNome").val();
+            var autor = { Nome: nome, Livros: livros };
+
+            $.ajax({
+                url: '@Url.Action("Create", "Autor")',
+                type: "POST",
+                data: JSON.stringify({ 'author': autor }),
+                dataType: "json",
+                traditional: true,
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    if (data.status == "Success") {
+                        alert("Autor cadastrado com Sucesso");
+                    } else {
+                        alert("Erro ao cadastrar Autor");
+                    }
+                },
+                error: function () {
+                    alert("Erro na comunicação");
+                }
+            });
+        }
+
     </script>
 }
 

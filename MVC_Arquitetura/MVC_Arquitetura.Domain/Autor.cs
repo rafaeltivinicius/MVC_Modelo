@@ -14,7 +14,7 @@ namespace MVC_Arquitetura.Domain
 
         public Autor()
         {
-            this.Livros = new List<Livro>();
+            Livros = new HashSet<Livro>();
         }
     }
 }
