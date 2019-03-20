@@ -52,7 +52,7 @@ namespace MVC_Arquitetura.Repository
 
         public Autor GetById(int id)
         {
-            return _db.Aturores.Find(id);
+            return _db.Aturores.Include(x => x.Livros).Where(x => x.Id == id).FirstOrDefault();
         }
 
         public List<Autor> GetByName(string name)

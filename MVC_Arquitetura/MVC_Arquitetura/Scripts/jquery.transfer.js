@@ -1,6 +1,4 @@
-/**
- * 穿梭框
- */
+
 var Transfer = (function ($) {
     // 全局变量，已选择项个数
     var selected_total_num = 0;
@@ -14,118 +12,118 @@ var Transfer = (function ($) {
      * @param settings 设置项
      */
     function transfer(settings) {
-
+        debugger;
         inputId = settings.inputId;
-        // 数据项的名称
+        // O nome do item de dados
         var itemName = settings.itemName;
-        // 分组的名称
+        // Nome do grupo
         var groupItemName = settings.groupItemName;
-        // 分组的列表名称
+        //Nome da lista agrupada
         var groupListName = settings.groupListName;
-        // 值的名称
+        // O nome do valor
         var valueName = settings.valueName;
         // 容器
         var container = "." + settings.container;
-        // 数据变化的回调函数
+        // Nome da função de retorno de chamada para alteração de dados de valor
         var callable = settings.callable;
-        // 穿梭框
+        // Shuttle box
         var transferId = "#transfer_double_" + inputId;
 
-        // 接收选中项文本框
+        // Receber caixa de texto selecionada
         var selectInputId = "#" + inputId;
 
-        // 列表数据
+        // Listar dados
         var data = settings.data || [];
-        // 分组列表数据
+        //Dados da lista de grupos
         var groupData = settings.groupData || [];
 
-        // 数据项总个数
+        // Número total de itens de dados
         var total_num = settings.data.length;
-        // 总个数显示文本
+        // Número total de texto
         var total_num_str = settings.data.length + " Itens";
 
-        // 分组总个数
+        // Número total de grupos
         var total_group_num = getGroupNum(groupData, groupListName);
-        // 分组总个数显示文本
+        // Número total de grupos para exibir texto
         var total_group_num_str = total_group_num + " Itens";
 
-        // 新的总个数
+        // Novo número total
         var new_total_num = 0;
-        // 新的分组总个数
+        // O número total de novos grupos
         var new_group_total_num = 0;
 
-        // 标签页
+        // Página de guia
         var tabItemName = ".tab-item-name-" + currentTimeStr;
-        // 标签页内容
+        // Conteúdo da guia
         var transferDoubleList = ".transfer-double-list-" + currentTimeStr;
 
-        // 左侧搜索框 id
+        //Caixa de pesquisa à esquerda id
         var listSearchId = "#listSearch_" + currentTimeStr;
-        // 左侧分组搜索框 id
+        // Caixa de pesquisa de grupo à esquerda id
         var groupListSearchId = "#groupListSearch_" + currentTimeStr;
-        // 右侧搜索框 id
+        //  Caixa de pesquisa direita id
         var selectedListSearchId = "#selectedListSearch_" + currentTimeStr;
 
-        // 左侧未选中项内容
+        //Itens não selecionados à esquerda
         var tabContentFirst = ".tab-content-first-" + currentTimeStr;
-        // 左侧未选中项列表 ul
+        // Lista de itens não selecionados à esquerda ul
         var transferDoubleListUl = ".transfer-double-list-ul-" + currentTimeStr;
-        // 左侧未选中项列表 li
+        // Lista de itens não selecionados à esquerda li
         var transferDoubleListLi = ".transfer-double-list-li-" + currentTimeStr;
-        // 左侧列表项 checkbox
+        // Listar item à esquerda checkbox
         var checkboxItem = ".checkbox-item-" + currentTimeStr;
-        // 左侧列表项名称
+        //Listar nome do item à esquerda
         var checkboxName = ".checkbox-name-" + currentTimeStr;
-        // 左侧总个数显示元素
+        // Número total de elementos à esquerda
         var totalNum = ".total_num_" + currentTimeStr;
-        // 左侧未选中项列表全选 id
+        // Selecione todos os itens à esquerda da lista não selecionadaid
         var selectAllId = "#selectAll_" + currentTimeStr;
 
-        // 左侧分组列表 ul
+        // Lista de grupos à esquerda ul
         var transferDoubleGroupListUl = ".transfer-double-group-list-ul-" + currentTimeStr;
-        // 左侧分组列表 li
+        // Lista de grupos à esquerda li
         var transferDoubleGroupListLi = ".transfer-double-group-list-li-" + currentTimeStr;
-        // 左侧分组列表分组全选，是分组全选，不是全选
+        // Agrupando lista à esquerda，É uma seleção de grupo，Nem todos
         var groupSelectAll = ".group-select-all-" + currentTimeStr;
-        // 左侧分组列表分组名称
+        //  Nome do grupo da lista de nomes de grupos à esquerda
         var groupName = ".group-name-" + currentTimeStr;
-        // 左侧不同分组 ul
+        // Grupos diferentes à esquerda ul
         var transferDoubleGroupListLiUl = ".transfer-double-group-list-li-ul-" + currentTimeStr;
-        // 左侧不同分组 li
+        //Grupos diferentes à esquerda li
         var transferDoubleGroupListLiUlLi = ".transfer-double-group-list-li-ul-li-" + currentTimeStr;
-        // 左侧不同分组 checkbox
+        // Grupos diferentes à esquerda checkbox
         var groupCheckboxItem = ".group-checkbox-item-" + currentTimeStr;
-        // 左侧不同分组选项名称
+        // Diferentes nomes de opções de agrupamento à esquerda
         var groupCheckboxName = ".group-checkbox-name-" + currentTimeStr;
-        // 左侧分组总个数显示元素
+        // Número total de grupos no elemento de exibição à esquerda
         var groupTotalNum = ".group_total_num_" + currentTimeStr;
-        // 左侧未选中分组列表全选 id
+        // A lista de grupos não está selecionada à esquerda id
         var groupsSelectAllId = "#groupsSelectAll_" + currentTimeStr;
 
-        // 右侧列表 ul
+        // Lista correta ul
         var transferDoubleSelectedListUl = ".transfer-double-selected-list-ul-" + currentTimeStr;
-        // 右侧列表 li
+        // Lista correta li
         var transferDoubleSelectedListLi = ".transfer-double-selected-list-li-" + currentTimeStr;
-        // 右侧列表选中项
+        // Item selecionado na lista da direita
         var checkboxSelectedItem = ".checkbox-selected-item-" + currentTimeStr;
-        // 右侧列表选中项名称
+        // Lado direito lista nome do item selecionado
         var checkboxSelectedName = ".checkbox-selected-name-" + currentTimeStr;
-        // 右侧全选 id，留待后续使用
+        // Seleção do lado direito id，Reservado para uso subseqüente
         var selectedAllId = "#selectedAll_" + currentTimeStr;
-        // 右侧总个数显示元素
+        // Número total de elementos à direita
         var selectedTotalNum = ".selected_total_num_" + currentTimeStr;
 
-        // 往右添加按钮
+        // Adicionar botão à direita
         var addSelected = "#add_selected_" + currentTimeStr;
-        // 往左添加按钮
+        // Adicionar botão à esquerda
         var deleteSelected = "#delete_selected_" + currentTimeStr;
 
 
-        // 穿梭框渲染
+        // Renderização da caixa de transporte
         $(container).append(generateTransfer(inputId, currentTimeStr));
 
         /**
-         * 数据渲染
+         * Chama Função que Carrega lado Esquerdo
          */
         $(transferId).find(transferDoubleListUl).empty();
         $(transferId).find(transferDoubleListUl).append(generateLeftList(currentTimeStr, data, itemName, valueName));
@@ -138,7 +136,20 @@ var Transfer = (function ($) {
         $(transferId).find(groupTotalNum).append(total_group_num_str);
 
         /**
-         * 点击标签页切换
+         * Chama Função que Carrega lado Direito
+         */
+        $(transferId).find(transferDoubleListUl).empty();
+        $(transferId).find(transferDoubleListUl).append(generateLeftList(currentTimeStr, data, itemName, valueName));
+        $(transferId).find(totalNum).empty();
+        $(transferId).find(totalNum).append(total_num_str);
+
+        $(transferId).find(transferDoubleGroupListUl).empty();
+        $(transferId).find(transferDoubleGroupListUl).append(generateLeftGroupList(currentTimeStr, groupData, itemName, groupListName, groupItemName, valueName));
+        $(transferId).find(groupTotalNum).empty();
+        $(transferId).find(groupTotalNum).append(total_group_num_str);
+
+        /**
+         Clique na guia para alternar
          */
         $(transferId).find(tabItemName).on("click", function () {
             $(selectAllId).prop("checked", false);
@@ -150,9 +161,9 @@ var Transfer = (function ($) {
                 });
                 $(addSelected).removeClass("btn-arrow-active");
                 $(transferId).find(transferDoubleSelectedListUl).empty();
-                // 清空右侧数量
+                // Limpar o número à direita
                 $(transferId).find(selectedTotalNum).text("0 Itens");
-                // 未选中项
+                // Item não selecionado
                 if ($(transferId).find(tabContentFirst).css("display") != "none") {
                     $(transferId).find(transferDoubleGroupListLiUlLi).each(function () {
                         $(this).css('display', 'block');
@@ -166,9 +177,9 @@ var Transfer = (function ($) {
                     $(transferId).find(groupTotalNum).empty();
                     $(transferId).find(groupTotalNum).append($(transferId).find(transferDoubleGroupListLiUlLi).length + " Itens");
                 } else {
-                    // 分组
+                    // Agrupamento
 
-                    // 清空 disabled
+                    // Vazio disabled
                     for (var j = 0; j < $(transferId).find(groupSelectAll).length; j++) {
                         $(transferId).find(groupSelectAll).eq(j).prop("disabled", "");
                     }
@@ -183,16 +194,16 @@ var Transfer = (function ($) {
                     $(transferId).find(totalNum).empty();
                     $(transferId).find(totalNum).append($(transferId).find(transferDoubleListLi).length + " Itens");
                 }
-                // 数据变化触发回调
+                // Alteração de dados aciona retorno de chamada
                 callable.call(this, getSelected(), getSelectedName());
-                // 标签切换按钮修改为未激活
+                // Botão de alternância de etiqueta modificado para inativo
                 $(addSelected).removeClass("btn-arrow-active");
                 $(deleteSelected).removeClass("btn-arrow-active");
             }
         });
 
         /**
-         * 监听左侧未选中项 checkBox 是否被选中
+         guarda Itens Selecionados da Esquerda (Que NÂO estão associados)
          */
         $(transferId).on("click", checkboxItem, function () {
             var selected_num = 0;
@@ -209,7 +220,7 @@ var Transfer = (function ($) {
         });
 
         /**
-         * 监听左侧分组 checkBox 是否被选中
+         * Ouça o lado esquerdo do grupo checkBox está selecionado
          */
         $(transferId).on("click", groupCheckboxItem, function () {
             var selected_num = 0;
@@ -225,7 +236,7 @@ var Transfer = (function ($) {
             }
         });
 
-        // 监听右侧未选中项 checkBox 是否被选中
+        // Monitore o item não selecionado no lado direito CheckBox está selecionado
         $(transferId).on("click", checkboxSelectedItem, function () {
             var deleted_num = 0;
             for (var i = 0; i < $(transferId).find(checkboxSelectedItem).length; i++) {
@@ -240,17 +251,17 @@ var Transfer = (function ($) {
             }
         });
 
-        // 选中或者反选分组中的所有未选中项
+        //Marque ou desmarque todos os itens não selecionados no grupo
         $(groupSelectAll).on("click", function () {
-            // 分组索引
+            // Índice de grupo
             var groupIndex = ($(this).attr("id")).split("_")[1];
-            // 某个分组被选中
+            // um grupo é selecionado
             if ($(this).is(':checked')) {
-                // 激活按钮
+                // Botão de ativação
                 $(addSelected).addClass("btn-arrow-active");
                 for (var i = 0; i < $(transferId).find(".belongs-group-" + groupIndex + "-" + currentTimeStr).length; i++) {
                     if (!$(transferId).find(".belongs-group-" + groupIndex + "-" + currentTimeStr).eq(i).is(':checked') && $(transferId).find(".belongs-group-" + groupIndex + "-" + currentTimeStr).eq(i).parent().parent().css("display") != "none") {
-                        // 此处如果用 attr，会出现第三次失效的情况
+                        // Se usado aqui attr，Haverá uma terceira falha
                         $(transferId).find(".belongs-group-" + groupIndex + "-" + currentTimeStr).eq(i).prop("checked", true);
                     }
                 }
@@ -285,13 +296,13 @@ var Transfer = (function ($) {
         });
 
         /**
-         * 列表全选
+         *Lista de seleção
          */
         $(selectAllId).on("click", function () {
             if ($(this).is(':checked')) {
                 for (var i = 0; i < $(transferId).find(checkboxItem).length; i++) {
                     if ($(transferId).find(transferDoubleListLi).eq(i).css('display') != "none" && !$(transferId).find(checkboxItem).eq(i).is(':checked')) {
-                        //此处如果用attr，会出现第三次失效的情况
+                        //Se usado aqui attr，Haverá uma terceira falha
                         $(transferId).find(checkboxItem).eq(i).prop("checked", true);
                     }
                 }
@@ -307,13 +318,13 @@ var Transfer = (function ($) {
         });
 
         /**
-         * 分组全选
+         * Seleção de grupo
          */
         $(groupsSelectAllId).on("click", function () {
             if ($(this).is(':checked')) {
                 for (var i = 0; i < $(transferId).find(groupCheckboxItem).length; i++) {
                     if ($(transferId).find(transferDoubleGroupListLiUlLi).eq(i).css('display') != "none" && !$(transferId).find(groupCheckboxItem).eq(i).is(':checked')) {
-                        // 此处如果用 attr，会出现第三次失效的情况
+                        // Se usado aqui attr，Haverá uma terceira falha
                         $(transferId).find(groupCheckboxItem).eq(i).prop("checked", true);
                     }
                     if (!$(transferId).find(groupSelectAll).eq(i).is(':checked')) {
@@ -335,12 +346,12 @@ var Transfer = (function ($) {
         });
 
         /**
-         * 将选中项添加至右侧
+         Move Item Para a Direita (Associados)
          */
         $(addSelected).on("click", function () {
             var listHtmlStr = "";
             var selectedItemNum = 0;
-            // 分组
+            // Agrupamento
             if ($(transferId).find(tabContentFirst).css("display") != "none") {
                 for (var i = 0; i < $(transferId).find(groupCheckboxItem).length; i++) {
                     if ($(transferId).find(groupCheckboxItem).eq(i).is(':checked')) {
@@ -366,21 +377,21 @@ var Transfer = (function ($) {
                     }
                 }
                 $(transferId).find(groupTotalNum).empty();
-                // 计算左侧总数
+                // Calcular o total do lado esquerdo
                 new_group_total_num = total_group_num - selectedItemNum;
-                // 计算右侧总数
+                // Calcular o lado direito total
                 selected_total_num = selectedItemNum;
                 var new_total_num_str = new_group_total_num + " Itens";
-                // 左侧数量
+                // Número à esquerda
                 $(transferId).find(groupTotalNum).append(new_total_num_str);
-                // 右侧数量
+                // Número de quantidades à direita
                 $(transferId).find(selectedTotalNum).text(selected_total_num + " Itens");
                 if (new_group_total_num == 0) {
                     $(groupsSelectAllId).prop("checked", true);
                     $(groupsSelectAllId).prop("disabled", "disabled");
                 }
             } else {
-                // 未选中项
+                // Item não selecionado
                 for (var i = 0; i < $(transferId).find(checkboxItem).length; i++) {
                     if ($(transferId).find(checkboxItem).eq(i).is(':checked')) {
                         var checkboxItemId = $(transferId).find(checkboxItem).eq(i).attr("id");
@@ -398,14 +409,14 @@ var Transfer = (function ($) {
                     }
                 }
                 $(transferId).find(totalNum).empty();
-                // 计算新的左侧总数
+                // Calcular o número total de lados esquerdos
                 new_total_num = total_num - selectedItemNum;
-                // 计算右侧总数
+                // Calcular o lado direito total
                 selected_total_num = selectedItemNum;
                 var new_total_num_str = new_total_num + " Items";
-                // 左侧数量
+                // Número à esquerda
                 $(transferId).find(totalNum).append(new_total_num_str);
-                // 右侧数量
+                // Número à direita
                 $(transferId).find(selectedTotalNum).text(selected_total_num + " Itens");
                 if (new_total_num == 0) {
                     $(selectAllId).prop("checked", true);
@@ -415,12 +426,12 @@ var Transfer = (function ($) {
             $(addSelected).removeClass("btn-arrow-active");
             $(transferId).find(transferDoubleSelectedListUl).empty();
             $(transferId).find(transferDoubleSelectedListUl).append(listHtmlStr);
-            // 数据变化触发回调
+            // aciona retorno de chamada
             callable.call(this, getSelected(), getSelectedName());
         });
 
         /**
-         * 删除选中项，回到左侧
+         Move Item para Esquerda (Desassociados)
          */
         $(deleteSelected).on("click", function () {
             var deleteItemNum = 0;
@@ -492,12 +503,12 @@ var Transfer = (function ($) {
         });
 
         /**
-         * 左侧模糊查询
+         * Consulta difusa esquerda
          */
         $(listSearchId).on("keyup", function () {
-            // 只要输入就显示列表框
+            // Basta entrar na caixa de listagem
             $(transferId).find(transferDoubleListUl).css('display', 'block');
-            // 如果什么都没填，保持全部显示状态
+            // Se nada for preenchido, mantenha todos os status de exibição
             if ($(listSearchId).val() == "") {
                 for (var i = 0; i < $(transferId).find(checkboxItem).length; i++) {
                     if (!$(transferId).find(checkboxItem).eq(i).is(':checked')) {
@@ -507,11 +518,11 @@ var Transfer = (function ($) {
                 return;
             }
 
-            // 如果填了，先将所有的选项隐藏
+            // Se preenchido，Ocultar todas as opções primeiro
             $(transferId).find(transferDoubleListLi).css('display', 'none');
 
             for (var j = 0; j < $(transferId).find(transferDoubleListLi).length; j++) {
-                // 模糊匹配，将所有匹配项显示
+                // Correspondência difusa，Mostrar todos os jogos
                 if (!$(transferId).find(checkboxItem).eq(j).is(':checked')
                     && $(transferId).find(transferDoubleListLi).eq(j).text()
                         .substr(0, $(listSearchId).val().length).toLowerCase() == $(listSearchId).val().toLowerCase()) {
@@ -521,34 +532,34 @@ var Transfer = (function ($) {
         });
 
         /**
-         * 左侧分组模糊查询
+         * Consulta difusa do grupo à esquerda
          */
         $(groupListSearchId).on("keyup", function () {
-            // 只要输入就显示列表框
+            // Basta entrar na caixa de listagem
             $(transferId).find(transferDoubleGroupListUl).css('display', 'block');
-            // 如果什么都没填，保持全部显示状态
+            // Se nada for preenchido，Mantenha todo o status de exibição
             if ($(groupListSearchId).val() == "") {
                 for (var i = 0; i < $(transferId).find(groupCheckboxItem).length; i++) {
                     if (!$(transferId).find(checkboxItem).eq(i).is(':checked')) {
-                        // 分组 li 改为显示
+                        // Agrupamento li Alterar para exibir
                         $(transferId).find(transferDoubleGroupListLiUlLi).eq(i).parent().parent().css('display', 'block');
-                        // 分组下每个 li 改为显示
+                        // Agrupe cada li Alterar para exibir
                         $(transferId).find(transferDoubleGroupListLiUlLi).eq(i).css('display', 'block');
                     }
                 }
                 return;
             }
 
-            // 如果填了，先将所有的选项隐藏
+            // Se preenchido， Ocultar todas as opções primeiro
             $(transferId).find(transferDoubleGroupListLi).css('display', 'none');
             $(transferId).find(transferDoubleGroupListLiUlLi).css('display', 'none');
 
             for (var j = 0; j < $(transferId).find(transferDoubleGroupListLiUlLi).length; j++) {
-                // 模糊匹配，将所有匹配项显示
+                // Correspondência difusa，Mostrar todos os jogos
                 if (!$(transferId).find(groupCheckboxItem).eq(j).is(':checked')
                     && $(transferId).find(transferDoubleGroupListLiUlLi).eq(j).text()
                         .substr(0, $(groupListSearchId).val().length).toLowerCase() == $(groupListSearchId).val().toLowerCase()) {
-                    // 分组 li 改为显示
+                    // Agrupamento li Alterar para exibir
                     $(transferId).find(transferDoubleGroupListLiUlLi).eq(j).parent().parent().css('display', 'block');
                     $(transferId).find(transferDoubleGroupListLiUlLi).eq(j).css('display', 'block');
                 }
@@ -556,7 +567,7 @@ var Transfer = (function ($) {
         });
 
         /**
-         * 右侧模糊查询
+         *Consulta difusa à direita
          */
         $(selectedListSearchId).keyup(function () {
             // 只要输入就显示列表框
@@ -580,7 +591,7 @@ var Transfer = (function ($) {
     }
 
     /**
-     * 左侧列表渲染
+     Carrega os itens do lado esquerda (3° função a ser chamada)
      * @param currentTimeStr
      * @param data
      * @returns {string}
@@ -600,7 +611,7 @@ var Transfer = (function ($) {
     }
 
     /**
-     * 左侧分组列表渲染
+     * Carrega Grupo (Quantidade) de itens do lado Esquerdo
      * @param currentTimeStr
      * @param data
      * @returns {string}
@@ -634,7 +645,7 @@ var Transfer = (function ($) {
     }
 
     /**
-     * 获取分组中项个数
+     Primeiro metodo a ser carregado - Conta Total de Grupo
      * @param data
      * @returns {number}
      */
@@ -687,7 +698,7 @@ var Transfer = (function ($) {
     }
 
     /**
-     * 渲染穿梭框
+     Monta os componentes da tela (2° função a ser carregado)
      * @param inputId
      * @param currentTimeStr
      * @returns {string}

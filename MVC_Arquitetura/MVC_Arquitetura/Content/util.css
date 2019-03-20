@@ -6,3 +6,9 @@
 #lbItem {
     margin-left: 40%;
 }
+
+.butoesOpcoes {
+    background-image: url('../img/editar.png');
+    height: 25px;
+    width: 25px;
+}

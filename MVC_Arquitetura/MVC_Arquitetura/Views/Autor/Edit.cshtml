@@ -1,0 +1,82 @@
+﻿@model MVC_Arquitetura.Domain.Autor
+
+@{
+    ViewBag.Title = "Editar Autor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/icon_font/css/icon_font.css" rel="stylesheet" />
+<link href="~/Content/jquery.transfer.css" rel="stylesheet" />
+<link href="~/Content/util.css" rel="stylesheet" />
+
+<form style="margin-top:5%">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Nome</label>
+        <input type="text" class="form-control" id="txtNome" aria-describedby="nomeHelp" placeholder="Nome">
+    </div>
+    <br />
+    <div class="transfer"></div>
+    <br />
+    <button type="submit" onclick="SubmitDados()" class="btn btn-primary" style="width:7%">Criar</button>
+</form>
+
+@section scripts {
+    <script src="~/Scripts/jquery.transfer.js"></script>
+    <script type="text/javascript">
+
+        var livros = [];
+        $("#txtNome").val("@Model.Nome");
+        var itens = @Html.Raw(Json.Encode(Model.Livros.Select( x=> new { x.Id, x.Nome })));
+
+        var settings = {
+            "inputId": "languageInput",
+            "data": itens,
+            "itemName": "Nome",
+            "container": "transfer",
+            "valueName": "Id",
+            "callable": function (data, names) {
+                for (i = 0; i < data.length; i++) {
+                    var item = {};
+                    item['Nome'] = names[i];
+                    item['Id'] = data[i];
+                    if (livros.map(a => a.Id).indexOf(data[i]) < 0) {
+                        livros.push(item);
+                    }
+                }
+            }
+        };
+
+        Transfer.transfer(settings);
+
+        // ou  url: '/autores/editar/'
+
+        function SubmitDados() {
+            var nome = $("#txtNome").val();
+            var autor = { Nome: nome, Livros: livros };
+
+            $.ajax({
+                url: '@Url.Action("Create", "Autor")',
+                type: "POST",
+                data: JSON.stringify({ 'author': autor }),
+                dataType: "json",
+                traditional: true,
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    if (data.status == "Success") {
+                        alert("Autor cadastrado com Sucesso");
+                    } else {
+                        alert("Erro ao cadastrar Autor");
+                    }
+                },
+                error: function () {
+                    alert("Erro na comunicação");
+                }
+            });
+        }
+
+    </script>
+}
+
+
+
+

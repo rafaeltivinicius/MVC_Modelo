@@ -50,14 +50,14 @@ namespace MVC_Arquitetura.Controllers
             return View(author);
         }
 
-        [Route("editar/{id:int:min(1)}")]
+        [Route("editar/{id:int}")]
         public ActionResult Edit(int id)
         {
-            var author = _repositoryAutor.GetById(id);
-            return View(author);
+            return View(_repositoryAutor.GetById(id));
         }
 
         [HttpPost]
+        [Route("editar")]
         public ActionResult Edit(Autor author)
         {
             if (_repositoryAutor.Update(author))

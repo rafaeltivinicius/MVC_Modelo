@@ -301,6 +301,7 @@
     <Content Include="Views\Autor\Index.cshtml" />
     <Content Include="Views\Autor\Create.cshtml" />
     <Content Include="Views\Autor\Partials\ListarAutor.cshtml" />
+    <Content Include="Views\Autor\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
