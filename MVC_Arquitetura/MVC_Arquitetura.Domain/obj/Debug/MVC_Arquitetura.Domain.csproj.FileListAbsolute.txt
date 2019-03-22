@@ -8,3 +8,4 @@ D:\ProjetosRV\BaltaIO\MVC_Modelo\MVC_Arquitetura\MVC_Arquitetura.Domain\bin\Debu
 D:\ProjetosRV\BaltaIO\MVC_Modelo\MVC_Arquitetura\MVC_Arquitetura.Domain\obj\Debug\MVC_Arquitetura.Domain.csproj.CoreCompileInputs.cache
 D:\ProjetosRV\BaltaIO\MVC_Modelo\MVC_Arquitetura\MVC_Arquitetura.Domain\obj\Debug\MVC_Arquitetura.Domain.dll
 D:\ProjetosRV\BaltaIO\MVC_Modelo\MVC_Arquitetura\MVC_Arquitetura.Domain\obj\Debug\MVC_Arquitetura.Domain.pdb
+D:\ProjetosRV\BaltaIO\MVC_Modelo\MVC_Arquitetura\MVC_Arquitetura.Domain\obj\Debug\MVC_Arquitetura.Domain.csprojAssemblyReference.cache

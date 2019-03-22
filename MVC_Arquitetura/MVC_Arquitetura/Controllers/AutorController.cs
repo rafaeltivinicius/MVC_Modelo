@@ -1,5 +1,7 @@
 ﻿using MVC_Arquitetura.Domain;
 using MVC_Arquitetura.Repository.Repositories.Contracts;
+using MVC_Arquitetura.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,7 +55,15 @@ namespace MVC_Arquitetura.Controllers
         [Route("editar/{id:int}")]
         public ActionResult Edit(int id)
         {
-            return View(_repositoryAutor.GetById(id));
+            var ViewModel = new EditaAutorViewModel();
+
+            //Remove Livros já vinculados ao Autor
+            //var livroUpdate = livro.Where(p => !autor.Livros.Any(p2 => p2.Id == p.Id)).ToList();
+
+            ViewModel.Autor = _repositoryAutor.GetById(id);
+            ViewModel.Livro = _repositoryLivro.get();
+
+            return View(ViewModel);
         }
 
         [HttpPost]

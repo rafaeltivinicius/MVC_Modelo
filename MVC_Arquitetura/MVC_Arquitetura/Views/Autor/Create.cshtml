@@ -6,8 +6,8 @@
 }
 
 <link href="~/icon_font/css/icon_font.css" rel="stylesheet" />
-<link href="~/Content/jquery.transfer.css" rel="stylesheet" />
 <link href="~/Content/util.css" rel="stylesheet" />
+<link href="~/Content/bala.DualSelectList.css" rel="stylesheet" />
 
 <form style="margin-top:5%">
     <div class="form-group">
@@ -15,44 +15,54 @@
         <input type="text" class="form-control" id="txtNome" aria-describedby="nomeHelp" placeholder="Nome">
     </div>
     <br />
-    <div class="transfer"></div>
+    <div id="dualSelectExample" style="width:500px; height:300px; background-color:#F0F0F0; padding:10px;"></div>
     <br />
     <button type="submit" onclick="SubmitDados()" class="btn btn-primary" style="width:7%">Criar</button>
 </form>
 
 
 @section scripts {
-    <script src="~/Scripts/jquery.transfer.js"></script>
+
+    <script src="~/Scripts/bala.DualSelectList.jquery.js"></script>
+
     <script type="text/javascript">
 
-        var livros = [];
+        var livrosASalvar = [];
+        var itensEsqNomes = [];
+        var itensDirNomes = [];
+
         var itens = @Html.Raw(Json.Encode(Model));
+        itensEsqNomes = itens.map(a => a.Nome);
 
-        var settings = {
-            "inputId": "languageInput",
-            "data": itens,
-            "itemName": "Nome",
-            "container": "transfer",
-            "valueName": "Id",
-            "callable": function (data, names) {
-                for (i = 0; i < data.length; i++) {
-                    var item = {};
-                    item['Nome'] = names[i];
-                    item['Id'] = data[i];
-                    if (livros.map(a => a.Id).indexOf(data[i]) < 0) {
-                        livros.push(item);
-                    }
-                }
+        var dsl = $('#dualSelectExample').DualSelectList({
+            'candidateItems': itensEsqNomes,
+            'selectionItems': itensDirNomes,
+            'colors': {
+                'itemText': 'white',
+                'itemBackground': 'rgb(0, 51, 204)',
+                'itemHoverBackground': '#0066ff'
             }
-        };
+        });
 
-        Transfer.transfer(settings);
+        function CarregaObjeto(result) {
+            var livro = itens.filter(obj => { return obj.Nome === result})
+            var item = {};
+            item['Nome'] = livro[0].Nome;
+            item['Id'] = livro[0].Id;
+            livrosASalvar.push(item);
 
-        // ou  url: '/autores/editar/'
+        }
 
         function SubmitDados() {
+
+            //Captura Itens da Direta
+            var res1 = dsl.getSelection();
+            for (var n = 0; n < res1.length; ++n) {
+                CarregaObjeto(res1[n]);
+            }
+
             var nome = $("#txtNome").val();
-            var autor = { Nome: nome, Livros: livros };
+            var autor = { Nome: nome, Livros: livrosASalvar };
 
             $.ajax({
                 url: '@Url.Action("Create", "Autor")',

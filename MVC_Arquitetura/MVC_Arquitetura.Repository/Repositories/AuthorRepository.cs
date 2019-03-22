@@ -17,6 +17,8 @@ namespace MVC_Arquitetura.Repository
         public AuthorRepository(BookStoreDataContext context)
         {
             _db = context;
+            _db.Configuration.LazyLoadingEnabled = false;
+            _db.Configuration.ProxyCreationEnabled = false;
         }
 
         public bool Create(Autor autor)
