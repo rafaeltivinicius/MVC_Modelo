@@ -47,6 +47,12 @@ namespace MVC_Arquitetura.Repository
         {
             return _db.Livros.AsNoTracking().ToList();
         }
+
+        public List<Livro> getByIdAll(int[] listId)
+        {
+            return _db.Livros.AsNoTracking().Where(x => listId.Contains(x.Id)).ToList();
+        }
+
         public List<Categoria> GetCategory()
         {
             return _db.Categorias.AsNoTracking().ToList();

@@ -52,6 +52,7 @@ namespace MVC_Arquitetura.Controllers
             return View(author);
         }
 
+        [HttpGet]
         [Route("editar/{id:int}")]
         public ActionResult Edit(int id)
         {
@@ -70,7 +71,14 @@ namespace MVC_Arquitetura.Controllers
         [Route("editar")]
         public ActionResult Edit(Autor author)
         {
-            if (_repositoryAutor.Update(author))
+            var autor = _repositoryAutor.GetById(author.Id);
+            var livrosNovos = _repositoryLivro.getByIdAll(author.Livros.Select(x => x.Id).ToArray());
+            var livrosRemover = autor.Livros.Where(p => !livrosNovos.Any(p2 => p2.Id == p.Id)).ToList();
+
+            autor.Nome = author.Nome;
+            autor.Livros = livrosNovos;
+
+            if (_repositoryAutor.Update(autor, livrosRemover))
                 return View("Index");
 
             return View(author);

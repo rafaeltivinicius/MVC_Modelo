@@ -13,7 +13,7 @@ namespace MVC_Arquitetura.Repository.Repositories.Contracts
         Autor GetById(int id);
         List<Autor> GetByName(string id);
         bool Create(Autor autor);
-        bool Update(Autor autor);
+        bool Update(Autor autor, IList<Livro> livros);
         void Delete(int id);
     }
 }

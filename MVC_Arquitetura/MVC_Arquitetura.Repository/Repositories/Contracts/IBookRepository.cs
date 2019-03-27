@@ -11,6 +11,7 @@ namespace MVC_Arquitetura.Repository.Repositories.Contracts
     {
         List<Livro> get();
         Livro GetById(int id);
+        List<Livro> getByIdAll(int[] listId);
         List<Livro> GetByName(string id);
         List<Categoria> GetCategory();
         bool Create(Livro autor);

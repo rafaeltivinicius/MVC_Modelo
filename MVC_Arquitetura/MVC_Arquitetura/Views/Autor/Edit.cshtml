@@ -27,7 +27,6 @@
     <script src="~/Scripts/bala.DualSelectList.jquery.js"></script>
 
     <script type="text/javascript">
-        debugger
 
         var nome = "@Model.Autor.Nome";
         var id = @Model.Autor.Id;
@@ -40,7 +39,7 @@
 
         livroEsqTodos = @Html.Raw(Json.Encode(Model.Livro.Select(x => new { x.Id, x.Nome })));
         livroDirOrigem = @Html.Raw(Json.Encode(Model.Autor.Livros.Select(x => new {x.Id,x.Nome })));
-        livroEsqOrigem = livroEsqTodos.filter(a => !livroDirOrigem.some(b => a.Id === b.Id)); 
+        livroEsqOrigem = livroEsqTodos.filter(a => !livroDirOrigem.some(b => a.Id === b.Id));
 
         var dsl = $('#dualSelectExample').DualSelectList({
             'candidateItems': livroEsqOrigem.map(a => a.Nome),
@@ -61,41 +60,42 @@
         }
 
         function SubmitDados() {
-            debugger
-            //Captura Itens da Direta
-            var res1 = dsl.getSelection();
-            for (var n = 0; n < res1.length; ++n) {
-                CarregaLivro(res1[n]);
+
+                //Captura Itens da Direta
+                var res1 = dsl.getSelection();
+                for (var n = 0; n < res1.length; ++n) {
+                    CarregaLivro(res1[n]);
+                }
+
+                //Captura Itens da Esquerda
+                //var res2 = dsl.getCandidate();
+                //for (var n = 0; n < res2.length; ++n) {
+                //    CarregaObjeto(res2[n]);
+                //}
+
+                var nome = $("#txtNome").val();
+                var autor = { Id: id, Nome: nome, Livros: livrosASalvar };
+
+                $.ajax({
+                    url: '@Url.Action("Edit", "Autor")',
+                    type: "POST",
+                    data: JSON.stringify({ 'author': autor }),
+                    dataType: "json",
+                    traditional: true,
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        if (data.status == "Success") {
+                            alert("Autor cadastrado com Sucesso");
+                        } else {
+                            alert("Erro ao cadastrar Autor");
+                        }
+                    },
+                    error: function () {
+                        alert("Erro na comunicação");
+                    }
+                });
             }
 
-            //Captura Itens da Esquerda
-            //var res2 = dsl.getCandidate();
-            //for (var n = 0; n < res2.length; ++n) {
-            //    CarregaObjeto(res2[n]);
-            //}
-
-            var nome = $("#txtNome").val();
-            var autor = {Id : id, Nome: nome, Livros: livrosASalvar };
-
-            $.ajax({
-                url: '@Url.Action("Edit", "Autor")',
-                type: "POST",
-                data: JSON.stringify({ 'author': autor }),
-                dataType: "json",
-                traditional: true,
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    if (data.status == "Success") {
-                        alert("Autor cadastrado com Sucesso");
-                    } else {
-                        alert("Erro ao cadastrar Autor");
-                    }
-                },
-                error: function () {
-                    alert("Erro na comunicação");
-                }
-            });
-        }
 
     </script>
 }

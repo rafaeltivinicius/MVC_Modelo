@@ -33,7 +33,7 @@ namespace MVC_Arquitetura.Repository
 
                 return true;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 return false;
@@ -62,20 +62,29 @@ namespace MVC_Arquitetura.Repository
             return _db.Aturores.AsNoTracking().Where(x => x.Nome.Trim().Contains(name.Trim())).ToList();
         }
 
-        public bool Update(Autor autor)
+        public bool Update(Autor autor, IList<Livro> livrosRemover)
         {
             try
             {
+                //foreach (var livroD in livrosRemover)
+                //    _db.Entry(livroD).State = EntityState.Deleted;
+
+                foreach (var livroA in autor.Livros)
+                {
+                    _db.Entry(livroA).State = EntityState.Modified;
+                    _db.SaveChanges();
+                }
+
                 _db.Entry<Autor>(autor).State = EntityState.Modified;
                 _db.SaveChanges();
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
-
         }
 
         public void Dispose()
